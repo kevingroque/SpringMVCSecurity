@@ -17,6 +17,8 @@ public interface EmployeeDAO {
 
 	void update(String login, String password, String lastname, String firstname, int salary, int dptId) throws DAOException;
 
+	void addRole(String login, String roleId) throws DAOException;
+	
 	Employee findEmployeeByLogin(String login) throws DAOException, EmptyResultException;
 
 	List<Employee> findAllEmployees() throws DAOException, EmptyResultException;

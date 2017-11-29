@@ -79,6 +79,42 @@ public class EmployeeController {
 
 		return modelAndView;
 	}
+	
+
+	////////////////////////////////////////////////////////////////////////////////////
+	// CREATION WITH ROLE //
+	////////////////////////////////////////////////////////////////////////////////////
+	@GetMapping("/admin/emp/createformWithRole")
+	public ModelAndView createformWithRole() {
+
+		Employee emp = new Employee();
+
+		ModelAndView modelAndView = new ModelAndView("admin/emp/createformWithRole", "employee", emp);
+
+		return modelAndView;
+	}
+
+
+	@PostMapping("/admin/emp/createWithRole")
+	public ModelAndView createWithRole(@ModelAttribute("employee") Employee emp, ModelMap model) {
+
+		ModelAndView modelAndView = null;
+
+
+			try {
+				employeeService.createWithRole(emp.getLogin(), emp.getPassword(), emp.getFirstname(),
+						emp.getLastname(), emp.getSalary(), 12, emp.getRole().getRoleId());
+				logger.info("new Employee login = " + emp.getLogin());
+				modelAndView = new ModelAndView("redirect:/admin/emp/list");
+			} catch (Exception e) {
+				logger.error(e.getMessage());
+				model.addAttribute("message", e.getMessage());
+				modelAndView = new ModelAndView("admin/emp/createformWithRole", "employee", emp);
+			}
+
+		return modelAndView;
+	}
+
 
 	//////////////////////////////////////////////////////////////////////////////////////
 	// SHOW EDIT FORM OR DELETE FORM//

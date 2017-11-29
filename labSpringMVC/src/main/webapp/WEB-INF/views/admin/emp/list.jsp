@@ -22,6 +22,11 @@
 					<a href="<%=request.getContextPath()%>/admin/emp/createform"
 					class="btn btn-success"><i class="glyphicon glyphicon-edit"></i>
 					Create Employee</a>
+					
+					<a href="<%=request.getContextPath()%>/admin/emp/createformWithRole"
+					class="btn btn-success"><i class="glyphicon glyphicon-edit"></i>
+					Create Employee With Role</a>	
+					
 					<a href="<%=request.getContextPath()%>/user/menu"
 					class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i>
 					Menu</a>
@@ -38,6 +43,7 @@
 							<th>Dept</th>
 							<th>Edit</th>
 							<th>Delete</th>
+							<th>Edit With Role</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -56,6 +62,7 @@
 									      </c:if>
 									</c:forEach>
 								</td>
+								
 								<td><a
 									href="<%=request.getContextPath()%>/admin/emp/editform/${emp.employeeId}"
 									class="btn btn-info btn-xs"> <i

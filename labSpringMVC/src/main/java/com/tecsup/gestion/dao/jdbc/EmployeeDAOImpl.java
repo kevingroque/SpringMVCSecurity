@@ -50,6 +50,27 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
 
 	@Override
+	public void addRole(String login, String roleId) throws DAOException {
+
+		String query = "INSERT INTO employees_roles (login, role)  VALUES ( ?,? )";
+
+		Object[] params = new Object[] { login, roleId };
+
+
+		try {
+			// create
+			jdbcTemplate.update(query, params);
+
+		} catch (Exception e) {
+			logger.error("Error: " + e.getMessage());
+			throw new DAOException(e.getMessage());
+		}
+
+	}
+
+	
+	
+	@Override
 	public void create(String login, String password, String lastname, String firstname, int salary, int dptId) throws DAOException {
 
 		String query = "INSERT INTO employees (login, password, first_name, last_name, salary, department_id)  VALUES ( ?,?,?,?,?,? )";

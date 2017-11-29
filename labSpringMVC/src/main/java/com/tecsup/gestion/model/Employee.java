@@ -13,6 +13,8 @@ public class Employee extends Credential {
 
 	@NotEmpty
 	String lastname;
+	
+	Role role = new Role();
 		
 	@Range(min = 1, max = 5000)
 	int salary;
@@ -63,6 +65,15 @@ public class Employee extends Credential {
 	public int getSalary() {
 		return salary;
 	}
+	
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
 
 	public void setSalary(int salary) {
 		this.salary = salary;

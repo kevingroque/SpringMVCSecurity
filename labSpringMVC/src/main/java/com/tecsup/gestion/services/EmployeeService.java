@@ -18,5 +18,8 @@ public interface EmployeeService {
 
 	void delete(String login) throws DAOException;
 
+	void createWithRole(String login, String password, String lastname, String firstname, int salary, int deptId,
+			String string) throws DAOException;
+
 	void create(String login, String password, String lastname, String firstname, int salary, int deptId) throws DAOException;
 }

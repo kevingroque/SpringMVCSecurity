@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.tecsup.gestion.dao.EmployeeDAO;
 import com.tecsup.gestion.exception.DAOException;
@@ -33,6 +35,18 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return emps;
 	}
 
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { DAOException.class })
+	public void createWithRole(String login, String password, String lastname, String firstname, int salary, int dptId,
+			String roleId) throws DAOException {
+
+		employeeDAO.create(login, password, lastname, firstname, salary, dptId);
+		employeeDAO.addRole(login, roleId);
+
+	}
+
+	
 	@Override
 	public void update(String login, String password, String lastname, String firstname, int salary, int dptId)
 			throws DAOException {
